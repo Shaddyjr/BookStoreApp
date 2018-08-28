@@ -17,10 +17,13 @@ public class StoreActivity extends AppCompatActivity {
     InventoryDbHelper mDbHelper;
     TextView mTextView;
 
+    // TODO: Add cursor adapter
+    // TODO: Add loader manager
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_store_activity);
 
         mTextView = findViewById(R.id.test);
         mDbHelper = new InventoryDbHelper(this);
