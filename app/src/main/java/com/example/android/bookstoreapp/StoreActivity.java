@@ -1,8 +1,11 @@
 package com.example.android.bookstoreapp;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,14 +23,28 @@ public class StoreActivity extends AppCompatActivity {
     // TODO: Add cursor adapter
     // TODO: Add loader manager
 
+    static public Context MAIN_CONTEXT;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_store_activity);
 
-        mTextView = findViewById(R.id.test);
         mDbHelper = new InventoryDbHelper(this);
-        viewDb();
+        MAIN_CONTEXT = this;
+
+        // Find the view pager that will allow the user to swipe between fragments
+        ViewPager viewPager = findViewById(R.id.viewpager);
+
+        // Create an adapter that knows which fragment should be shown on each page
+        CategoryAdapter adapter = new CategoryAdapter(this,getSupportFragmentManager());
+
+        // Set the adapter onto the view pager
+        viewPager.setAdapter(adapter);
+
+        // Give the TabLayout the ViewPager
+        TabLayout tabLayout = findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     private void insertData(String name, int price, int quantity, String supplier_name, String supplier_phone) {
