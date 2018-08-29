@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<!--TODO: Displays one item-->
-</android.support.constraint.ConstraintLayout>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="18dp"
+    >
+
+    <TextView
+        android:id="@+id/itemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Some Name"
+        android:textSize="42sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        />
+    <TextView
+        android:id="@+id/itemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="$500.00"
+        android:textSize="32sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/itemName"
+        />
+
+    <LinearLayout
+        android:id="@+id/itemQuantityContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/itemPrice"
+        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:id="@+id/itemQuantity"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            tools:text="Quantity: 4"
+            android:textSize="22sp"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sale"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/itemSupplierName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Supplier: Bob Bobbington"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/itemQuantityContainer"
+        />
+
+    <TextView
+        android:id="@+id/itemSupplierNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Order now: (123) 123-1234"
+        android:textSize="16sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/itemSupplierName"
+        />
+
+</RelativeLayout>

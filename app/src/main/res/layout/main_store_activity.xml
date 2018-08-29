@@ -31,5 +31,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/baseline_add_circle_outline_white_24"/>
+        android:src="@drawable/round_play_arrow_white_18"/>
+        <!--Needed to add VectorDrawables support to build.gradle-->
 </RelativeLayout>
