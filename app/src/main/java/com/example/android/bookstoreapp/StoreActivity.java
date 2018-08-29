@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +20,8 @@ public class StoreActivity extends AppCompatActivity {
 
     InventoryDbHelper mDbHelper;
     TextView mTextView;
-
+    ListView mListView;
+    CategoryCursorFragmentPagerAdapter mAdapter;
     // TODO: Add cursor adapter
     // TODO: Add loader manager
 
@@ -33,11 +35,14 @@ public class StoreActivity extends AppCompatActivity {
         mDbHelper = new InventoryDbHelper(this);
         MAIN_CONTEXT = this;
 
+        mListView = findViewById(R.id.)
+        mAdapter = new CategoryCursorFragmentPagerAdapter(this,null);
+
         // Find the view pager that will allow the user to swipe between fragments
         ViewPager viewPager = findViewById(R.id.viewpager);
 
         // Create an adapter that knows which fragment should be shown on each page
-        CategoryAdapter adapter = new CategoryAdapter(this,getSupportFragmentManager());
+        CategoryCursorFragmentPagerAdapter adapter = new CategoryCursorFragmentPagerAdapter(this,getSupportFragmentManager());
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);
@@ -45,6 +50,8 @@ public class StoreActivity extends AppCompatActivity {
         // Give the TabLayout the ViewPager
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+
     }
 
     private void insertData(String name, int price, int quantity, String supplier_name, String supplier_phone) {

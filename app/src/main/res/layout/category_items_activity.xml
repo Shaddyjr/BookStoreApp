@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<ListView
+    android:id="@+id/category_items_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+
+    <!--Needed to add "api" to build.gradle-->
+    <android.support.design.widget.TabLayout
+        android:id="@+id/sliding_tabs"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:tabMode="fixed"
+        />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <!--EMPTY DATABASE LAYOUT-->
+    <RelativeLayout
+        android:id="@+id/emptyDB"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        >
+        <ImageView
+            android:id="@+id/emptyBox"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/empty_box"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:id="@+id/noItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emptyBox"
+            android:text="There are no items"
+            android:textSize="32sp"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/noItems"
+            android:text="Add some by using the button at the bottom"
+            android:paddingTop="18dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
+
+    <!--TODO: Add menu-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/round_play_arrow_white_18"/>
+    <!--Needed to add VectorDrawables support to build.gradle-->
+    </RelativeLayout>
+</ListView>

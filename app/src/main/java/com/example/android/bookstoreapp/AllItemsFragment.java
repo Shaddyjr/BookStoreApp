@@ -1,6 +1,8 @@
 package com.example.android.bookstoreapp;
 
+import android.content.Loader;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,12 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AllItemsFragment extends Fragment {
+public class AllItemsFragment extends CategoryFragment{
+
 
     public AllItemsFragment() {
         // Required empty public constructor
@@ -25,12 +26,29 @@ public class AllItemsFragment extends Fragment {
         Resources res = getResources();
 
         // setting up list adapter
-//        LocationAdapter locationAdapter = new LocationAdapter(getActivity(), locations);
-//
-//        ListView listView = rootView.findViewById(R.id.list_items_container);
-//
+//        CategoryCursorFragmentPagerAdapter categoryAdapter= new LocationAdapter(getActivity(), locations);
+
+        ListView listView = rootView.findViewById(R.id.category_items_container);
+
 //        listView.setAdapter(locationAdapter);
-//
+
         return rootView;
     }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
+
+
 }
