@@ -21,28 +21,25 @@ public class StoreActivity extends AppCompatActivity {
     InventoryDbHelper mDbHelper;
     TextView mTextView;
     ListView mListView;
-    CategoryCursorFragmentPagerAdapter mAdapter;
-    // TODO: Add cursor adapter
-    // TODO: Add loader manager
-
-    static public Context MAIN_CONTEXT;
+    CategoryFragmentAdapter mAdapter;
+    // TODO: Add fragment adapter
+    Context MAIN_CONTEXT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_store_activity);
 
-        mDbHelper = new InventoryDbHelper(this);
+
         MAIN_CONTEXT = this;
 
-        mListView = findViewById(R.id.)
-        mAdapter = new CategoryCursorFragmentPagerAdapter(this,null);
+//        mListView = findViewById(R.id.);
 
         // Find the view pager that will allow the user to swipe between fragments
         ViewPager viewPager = findViewById(R.id.viewpager);
 
         // Create an adapter that knows which fragment should be shown on each page
-        CategoryCursorFragmentPagerAdapter adapter = new CategoryCursorFragmentPagerAdapter(this,getSupportFragmentManager());
+        CategoryFragmentAdapter adapter = new CategoryFragmentAdapter(this,getSupportFragmentManager());
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);

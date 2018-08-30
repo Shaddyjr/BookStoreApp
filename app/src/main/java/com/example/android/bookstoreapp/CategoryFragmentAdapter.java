@@ -5,10 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-public class CategoryCursorFragmentPagerAdapter extends FragmentPagerAdapter {
+public class CategoryFragmentAdapter extends FragmentPagerAdapter {
 
     Context mContext;
-    public CategoryCursorFragmentPagerAdapter(Context c, FragmentManager fm) {
+    public CategoryFragmentAdapter(Context c, FragmentManager fm) {
         super(fm);
         mContext = c;
     }
