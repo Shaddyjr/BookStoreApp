@@ -20,6 +20,8 @@
     <string name="quantity">Quantity: %1$d</string>
     <string name="emptyInventory">No Inventory!</string>
     <string name="emptyInventoryInstructions">Add a new Product using the "Add Product" button in the lower right</string>
+    <string name="editorTitleNewItem">New Item</string>
+    <string name="editorTitleEditItem">Edit Item</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
