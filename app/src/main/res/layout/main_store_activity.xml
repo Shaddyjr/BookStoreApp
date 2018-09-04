@@ -11,14 +11,16 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/sliding_tabs"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         app:tabMode="fixed"
         />
 
+    <!--Needed to place ViewPager below tabs in RelativeLayout-->
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/sliding_tabs"
         />
 
     <!--TODO: Add menu-->

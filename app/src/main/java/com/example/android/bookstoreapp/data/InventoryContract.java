@@ -46,7 +46,7 @@ public final class InventoryContract {
             return name != null;
         }
 
-        public static boolean isValidPrice (Integer price){
+        public static boolean isValidPrice (Double price){
             return price != null && price >= 0;
         }
 

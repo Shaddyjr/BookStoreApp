@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,14 +29,11 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
     private View mEmptyView;
     CategoryCursorAdapter mCursorAdapter;
     private static final int LOADER_ID = 0;
-    static Context MAIN_CONTEXT;
-    /**
-     * Create link to DB
-     * populate DB on create
-     * Create method for incorporating data directly to DB
-     * Create method for reading from DB
-     * Create method for visualizing raw data from DB
-     */
+    private Context MAIN_CONTEXT;
+
+    public CategoryFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,13 +44,14 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
         mEmptyView = rootView.findViewById(R.id.emptyDB);
 
         mListView.setEmptyView(mEmptyView);
-        mCursorAdapter = new CategoryCursorAdapter(MAIN_CONTEXT, null);
+        mCursorAdapter = new CategoryCursorAdapter(getActivity(), null);
         mListView.setAdapter(mCursorAdapter);
         // adding click listener to each item
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), EditorActivity.class);
+                Log.v("onCreateView","item clicked: " + position);
+                Intent intent = new Intent(MAIN_CONTEXT, EditorActivity.class);
                 Uri uri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI,id);
                 // can set uri data directly with intent
                 intent.setData(uri);

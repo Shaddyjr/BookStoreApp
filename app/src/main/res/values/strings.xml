@@ -1,28 +1,44 @@
 <resources>
+    <!--APPLICATION-->
     <string name="app_name">BookStoreApp</string>
-    <string name="itemCount">"There are %1$d items available: \n\n"</string>
-    <string name="itemAdded">New inventory item added: %1$s</string>
-    <string name="itemError">Error adding inventory item: %1$s</string>
-    <string name="rowContentHeader">%1$s | %2$s | %3$s | %4$s | %5$s | %6$s \n\n</string>
-    <string name="rowContentValues">%1$d | %2$s | %3$d | %4$d | %5$s | %6$s \n\n</string>
-    <string name="fakeButton">Add fake data</string>
-    <string name="editProduct">Edit Product</string>
-    <string name="newProduct">New Product</string>
+
+    <!--INSERT-->
+    <string name="editorTitleNewItem">New Item</string>
+    <string name="itemAdded">New item added to inventory</string>
+    <string name="itemAddedError">Error adding item to inventory</string>
+
+    <!--UPDATE-->
+    <string name="editorTitleEditItem">Edit Item</string>
+    <string name="itemEdited">Item updated</string>
+    <string name="itemEditedError">Error updating item</string>
+
+    <!--DELETE-->
+    <string name="deleteSuccess">Item deleted</string>
+
+    <!--TABS-->
     <string name="category_title_allProducts">All Products</string>
     <string name="category_title_productsByName">By Name</string>
     <string name="category_title_productsByPrice">By Price</string>
     <string name="category_title_productsByQuantity">By Quantity</string>
+
+    <!--ITEM INFO-->
     <string name="supplierName">Supplier: %1$s</string>
     <string name="supplierNumber">Supplier Number: %1$s</string>
-    <string name="sale">Sale</string>
-    <string name="delete">Delete</string>
-    <string name="order">Order</string>
     <string name="quantity">Quantity: %1$d</string>
-    <string name="emptyInventory">No Inventory!</string>
-    <string name="emptyInventoryInstructions">Add a new Product using the "Add Product" button in the lower right</string>
-    <string name="editorTitleNewItem">New Item</string>
-    <string name="editorTitleEditItem">Edit Item</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sale">Sale</string>
+    <string name="save">Save</string>
+    <string name="order">Order</string>
+
+    <!--EMPTY DB-->
+    <string name="emptyInventory">No Inventory!</string>
+    <string name="emptyInventoryInstructions">Add a new Item using the button in the lower right</string>
+
+    <!--MENU-->
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <string name="discard">Discard Changes</string>
+    <string name="keep_editing">Keep Editing</string>
+    <string name="delete_dialog_msg">Delete item?</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
 </resources>

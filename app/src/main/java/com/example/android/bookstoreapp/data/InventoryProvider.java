@@ -101,7 +101,7 @@ public class InventoryProvider extends ContentProvider{
             throw new IllegalArgumentException("Item requires a name");
         }
 
-        Integer price = contentValues.getAsInteger(InventoryEntry.COLUMN_PRICE);
+        Double price = contentValues.getAsDouble(InventoryEntry.COLUMN_PRICE);
         if(!InventoryEntry.isValidPrice(price)){
             throw new IllegalArgumentException("Item requires a non-negative price");
         }
@@ -185,7 +185,7 @@ public class InventoryProvider extends ContentProvider{
         }
 
         if (contentValues.containsKey(InventoryEntry.COLUMN_PRICE)) {
-            Integer price = contentValues.getAsInteger(InventoryEntry.COLUMN_PRICE);
+            Double price = contentValues.getAsDouble(InventoryEntry.COLUMN_PRICE);
             if (!InventoryEntry.isValidPrice(price)) {
                 throw new IllegalArgumentException("Item requires a non-negative price");
             }

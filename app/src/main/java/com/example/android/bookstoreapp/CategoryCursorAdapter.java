@@ -2,9 +2,11 @@ package com.example.android.bookstoreapp;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
@@ -35,5 +37,13 @@ public class CategoryCursorAdapter extends CursorAdapter{
         nameView.setText(cursor.getString(cursor.getColumnIndex(InventoryEntry.COLUMN_NAME)));
         priceView.setText(cursor.getString(cursor.getColumnIndex(InventoryEntry.COLUMN_PRICE)));
         quantityView.setText(cursor.getString(cursor.getColumnIndex(InventoryEntry.COLUMN_QUANTITY)));
+
+        Button button = view.findViewById(R.id.saleButton);
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Log.v("CursorAdapter: ","This 'Sale' button was clicked!");
+            }
+        });
     }
 }
