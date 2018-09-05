@@ -23,17 +23,15 @@ import android.widget.ListView;
 import com.example.android.bookstoreapp.data.InventoryContract.InventoryEntry;
 
 
-public class CategoryFragment extends android.support.v4.app.Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
-
+public abstract class CategoryFragment extends android.support.v4.app.Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
     private ListView mListView;
     private View mEmptyView;
     CategoryCursorAdapter mCursorAdapter;
     private static final int LOADER_ID = 0;
-    private Context MAIN_CONTEXT;
+    public Context MAIN_CONTEXT;
 
-    public CategoryFragment() {
-        // Required empty public constructor
-    }
+
+    public abstract CursorLoader createCursorLoader(String[] projection);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,11 +45,12 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
         mCursorAdapter = new CategoryCursorAdapter(getActivity(), null);
         mListView.setAdapter(mCursorAdapter);
         // adding click listener to each item
+        Log.v("AllItemsFragment","Loaded properly!");
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Log.v("onCreateView","item clicked: " + position);
-                Intent intent = new Intent(MAIN_CONTEXT, EditorActivity.class);
+                Intent intent = new Intent(view.getContext(), EditorActivity.class);
                 Uri uri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI,id);
                 // can set uri data directly with intent
                 intent.setData(uri);
@@ -61,6 +60,7 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
 
         // TODO: add menu options (delete all)
         addFakeData();
+        mCursorAdapter.notifyDataSetChanged(); // good practice to call when data changes!
         // kicking off loader
         getLoaderManager().initLoader(LOADER_ID,null,this);
         return rootView;
@@ -79,14 +79,7 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
                         InventoryEntry.COLUMN_SUPPLIER_NAME,
                         InventoryEntry.COLUMN_SUPPLIER_PHONE
                 };
-                return new CursorLoader(
-                        MAIN_CONTEXT,
-                        InventoryEntry.CONTENT_URI,
-                        projection,
-                        null,
-                        null,
-                        null
-                );
+                return createCursorLoader(projection);
             default:
                 // invalid id
                 return null;

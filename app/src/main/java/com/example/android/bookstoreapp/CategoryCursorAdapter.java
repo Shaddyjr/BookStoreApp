@@ -39,6 +39,7 @@ public class CategoryCursorAdapter extends CursorAdapter{
         quantityView.setText(cursor.getString(cursor.getColumnIndex(InventoryEntry.COLUMN_QUANTITY)));
 
         Button button = view.findViewById(R.id.saleButton);
+//      TODO: add "Sale" logic
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {

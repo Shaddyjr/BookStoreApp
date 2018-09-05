@@ -18,11 +18,11 @@ public class CategoryFragmentAdapter extends FragmentPagerAdapter {
             case 0:
                 return new AllItemsFragment();
             case 1:
-                return new AllItemsFragment();
+                return new ByNameFragment();
             case 2:
-                return new AllItemsFragment();
+                return new ByPriceFragment();
             case 3:
-                return new AllItemsFragment();
+                return new ByQuantityFragment();
             default:
                 return null;
         }
