@@ -13,7 +13,6 @@
         />
     <!--needed to add blocksDescendant-->
 
-    <!--TODO: Add spinner-->
     <!--EMPTY DATABASE LAYOUT-->
     <RelativeLayout
         android:id="@+id/emptyDB"

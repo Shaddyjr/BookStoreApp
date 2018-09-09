@@ -19,6 +19,9 @@
         <activity android:name=".EditorActivity"
             android:parentActivityName=".StoreActivity"
             />
+        <activity android:name=".DisplayItemActivity"
+            android:parentActivityName=".StoreActivity"
+            />
         <provider
             android:authorities="com.example.android.bookstoreapp"
             android:name=".data.InventoryProvider"

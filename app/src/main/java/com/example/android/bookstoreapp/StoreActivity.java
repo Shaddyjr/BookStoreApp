@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.example.android.bookstoreapp.data.InventoryContract.InventoryEntry;
 import com.example.android.bookstoreapp.data.InventoryDbHelper;
-// TODO: add Delete all feature
 public class StoreActivity extends AppCompatActivity {
     CategoryFragmentAdapter mAdapter;
 
@@ -36,7 +35,6 @@ public class StoreActivity extends AppCompatActivity {
         viewPager.setAdapter(mAdapter);
 
         // Give the TabLayout the ViewPager
-        // TODO: add tab style for focus
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 

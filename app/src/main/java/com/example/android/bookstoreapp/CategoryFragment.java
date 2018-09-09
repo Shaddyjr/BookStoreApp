@@ -30,7 +30,6 @@ public abstract class CategoryFragment extends android.support.v4.app.Fragment i
     private static final int LOADER_ID = 0;
     public Context MAIN_CONTEXT;
 
-
     public abstract CursorLoader createCursorLoader(String[] projection);
 
     @Override
@@ -50,7 +49,7 @@ public abstract class CategoryFragment extends android.support.v4.app.Fragment i
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Log.v("onCreateView","item clicked: " + position);
-                Intent intent = new Intent(view.getContext(), EditorActivity.class);
+                Intent intent = new Intent(view.getContext(), DisplayItemActivity.class);
                 Uri uri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI,id);
                 // can set uri data directly with intent
                 intent.setData(uri);
@@ -58,8 +57,6 @@ public abstract class CategoryFragment extends android.support.v4.app.Fragment i
             }
         });
 
-        // TODO: add menu options (delete all)
-        addFakeData();
         mCursorAdapter.notifyDataSetChanged(); // good practice to call when data changes!
         // kicking off loader
         getLoaderManager().initLoader(LOADER_ID,null,this);

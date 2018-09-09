@@ -222,9 +222,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         }
     }
 
-    private void deleteItem(){
+    private void deleteItem() throws Exception{
         if(mUri != null){
-            getContentResolver().delete(mUri, null, null);
+            int rowsDeleted = getContentResolver().delete(mUri, null, null);
+            if(rowsDeleted!=1) throw new Exception("Item could not be found");
             Toast.makeText(EditorActivity.this,getString(R.string.deleteSuccess), Toast.LENGTH_SHORT).show();
         }
         finish();
@@ -329,7 +330,13 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked the "Delete" button
-                deleteItem();
+                try{
+                    deleteItem();
+                }
+                catch (Exception err){
+                    Toast.makeText(EditorActivity.this,err.toString(), Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
