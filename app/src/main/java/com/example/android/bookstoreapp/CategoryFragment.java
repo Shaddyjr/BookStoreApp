@@ -93,13 +93,13 @@ public abstract class CategoryFragment extends android.support.v4.app.Fragment i
         mCursorAdapter.swapCursor(null);
     }
 
-    private void addFakeData(){
-        ContentValues values = new ContentValues();
-        values.put(InventoryEntry.COLUMN_NAME, "Bob");
-        values.put(InventoryEntry.COLUMN_PRICE, 15.04);
-        values.put(InventoryEntry.COLUMN_QUANTITY, 2);
-        values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, "Juan");
-        values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE, "456-457-1234");
-        MAIN_CONTEXT.getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
-    }
+//    private void addFakeData(){
+//        ContentValues values = new ContentValues();
+//        values.put(InventoryEntry.COLUMN_NAME, "Bob");
+//        values.put(InventoryEntry.COLUMN_PRICE, 15.04);
+//        values.put(InventoryEntry.COLUMN_QUANTITY, 2);
+//        values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, "Juan");
+//        values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE, "456-457-1234");
+//        MAIN_CONTEXT.getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
+//    }
 }

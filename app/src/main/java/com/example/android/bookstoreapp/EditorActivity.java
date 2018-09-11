@@ -1,12 +1,11 @@
 package com.example.android.bookstoreapp;
 
 
-import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.CursorLoader;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
@@ -14,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -103,7 +103,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 };
                 return new CursorLoader(
                         getApplicationContext(),
-                        InventoryEntry.CONTENT_URI,
+                        mUri,
                         projection,
                         null,
                         null,
@@ -240,6 +240,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.edit).setVisible(false); // always hide edit menu item
         // If this is a new item, hide the "Delete" menu item
         MenuItem menuItem = menu.findItem(R.id.delete);
         if (mUri == null) {
@@ -308,8 +309,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     private void showUnsavedChangesDialog(DialogInterface.OnClickListener discardButtonClickListener) {
-//      NEEDED TO ADD A THEME FOR AlertDialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//      NEEDED TO ADD import android.support.v7.app.AlertDialog;
+//      NEEDED TO ADD theme to styles.xml
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditorActivity.this);
+        builder.setCancelable(false);
         builder.setMessage(R.string.unsaved_changes_dialog_msg);
         builder.setPositiveButton(R.string.discard, discardButtonClickListener);
         builder.setNegativeButton(R.string.keep_editing, new DialogInterface.OnClickListener() {
@@ -327,6 +330,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_dialog_msg);
+        builder.setCancelable(false);
+
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked the "Delete" button
@@ -347,9 +352,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 }
             }
         });
-
-        // Create and show the AlertDialog
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        final AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

@@ -1,6 +1,10 @@
 <resources>
     <!--APPLICATION-->
     <string name="app_name">BookStoreApp</string>
+    <string name="edit">Edit</string>
+
+    <!--READ-->
+    <string name="itemReadError">Could not find item</string>
 
     <!--INSERT-->
     <string name="editorTitleNewItem">New Item</string>

@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.android.bookstoreapp.data.InventoryContract.InventoryEntry;
 
+import java.util.Locale;
+
 public class CategoryCursorAdapter extends CursorAdapter{
     public CategoryCursorAdapter(Context context, Cursor c) {
         super(context, c,0);
@@ -39,7 +41,10 @@ public class CategoryCursorAdapter extends CursorAdapter{
         final TextView quantityView = view.findViewById(R.id.itemQuantity);
 
         nameView.setText(cursor.getString(cursor.getColumnIndex(InventoryEntry.COLUMN_NAME)));
-        priceView.setText(cursor.getString(cursor.getColumnIndex(InventoryEntry.COLUMN_PRICE)));
+
+        double price = cursor.getDouble(cursor.getColumnIndex(InventoryEntry.COLUMN_PRICE));
+        priceView.setText(String.format(Locale.US,"$%.2f", price));
+
         quantityView.setText(cursor.getString(cursor.getColumnIndex(InventoryEntry.COLUMN_QUANTITY)));
 
         Button button = view.findViewById(R.id.saleButton);
@@ -54,7 +59,7 @@ public class CategoryCursorAdapter extends CursorAdapter{
 
                 // DATABASE UPDATE
                 int quantity = Integer.parseInt(cursor.getString(cursor.getColumnIndex(InventoryEntry.COLUMN_QUANTITY)));
-                if( quantity - 1 <= 0) return;
+                if( quantity - 1 < 0) return;
 
                 int updatedQuantity = quantity - 1;
 
