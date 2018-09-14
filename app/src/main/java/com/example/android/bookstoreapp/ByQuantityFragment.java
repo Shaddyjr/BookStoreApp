@@ -8,7 +8,7 @@ public class ByQuantityFragment extends CategoryFragment {
     @Override
     public CursorLoader createCursorLoader(String[] projection) {
         String colName = InventoryEntry.COLUMN_QUANTITY;
-        String sortOrder = String.format("%s ASC",colName);
+        String sortOrder = String.format("%s DESC",colName);
         return new CursorLoader(
                 MAIN_CONTEXT,
                 InventoryEntry.CONTENT_URI,

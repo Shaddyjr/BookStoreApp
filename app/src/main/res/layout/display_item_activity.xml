@@ -36,6 +36,34 @@
         android:layout_marginTop="32dp"
         android:gravity="center_vertical"
         >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <Button
+                android:id="@+id/plus_100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/plus_100"
+                android:tag="100"
+                />
+            <Button
+                android:id="@+id/plus_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/plus_10"
+                android:tag="10"
+                />
+            <Button
+                android:id="@+id/plus_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/plus_1"
+                android:tag="1"
+                />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/itemQuantity"
             android:layout_width="0dp"
@@ -46,6 +74,36 @@
             android:textAlignment="center"
             android:layout_centerHorizontal="true"
             />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <Button
+            android:id="@+id/minus_100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minus_100"
+            android:tag="-100"
+            />
+        <Button
+            android:id="@+id/minus_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minus_10"
+            android:tag="-10"
+            />
+        <Button
+            android:id="@+id/minus_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minus_1"
+            android:tag="-1"
+            />
+    </LinearLayout>
+
     </LinearLayout>
 
     <TextView
@@ -59,11 +117,14 @@
         android:layout_below="@+id/itemQuantityContainer"
         />
 
+    <!--TODO: add underline or other signal for clicking-->
     <TextView
         android:id="@+id/itemSupplierNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Order now: (123) 123-1234"
+        android:textStyle="italic"
+        android:textColor="@color/primaryLightAlt"
         android:textSize="16sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"

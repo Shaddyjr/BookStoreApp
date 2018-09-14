@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 import com.example.android.bookstoreapp.data.InventoryContract.InventoryEntry;
 
+import java.util.Locale;
+
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private EditText mName;
@@ -48,7 +50,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         mCursorAdapter = new CategoryCursorAdapter(this, null);
 
-//      Find all relevant views
         mName = findViewById(R.id.editName);
         mPrice = findViewById(R.id.editPrice);
         mQuantity = findViewById(R.id.editQuantity);
@@ -123,22 +124,22 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         }
 
         if(cursor.moveToFirst()){
-            int nameIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_NAME);
-            int priceIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_PRICE);
-            int quantityIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_QUANTITY);
-            int supplierNameIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_SUPPLIER_NAME);
+            int nameIndex          = cursor.getColumnIndex(InventoryEntry.COLUMN_NAME);
+            int priceIndex         = cursor.getColumnIndex(InventoryEntry.COLUMN_PRICE);
+            int quantityIndex      = cursor.getColumnIndex(InventoryEntry.COLUMN_QUANTITY);
+            int supplierNameIndex  = cursor.getColumnIndex(InventoryEntry.COLUMN_SUPPLIER_NAME);
             int supplierPhoneIndex = cursor.getColumnIndex(InventoryEntry.COLUMN_SUPPLIER_PHONE);
 
-            String name = cursor.getString(nameIndex);
-            double price = cursor.getDouble(priceIndex);
-            int quantity = cursor.getInt(quantityIndex);
-            String supplierName = cursor.getString(supplierNameIndex);
-            String supplierPhone = cursor.getString(supplierPhoneIndex);
+            String name            = cursor.getString(nameIndex);
+            double price           = cursor.getDouble(priceIndex);
+            int quantity           = cursor.getInt(quantityIndex);
+            String supplierName    = cursor.getString(supplierNameIndex);
+            String supplierPhone   = cursor.getString(supplierPhoneIndex);
 
 
             mName.setText(name);
-            mPrice.setText(Double.toString(price));
-            mQuantity.setText(Integer.toString(quantity));
+            mPrice.setText(String.format(Locale.US, "%f", price));
+            mQuantity.setText(String.format(Locale.US, "%d", quantity));
             mSupplierName.setText(supplierName);
             mSupplierNumber.setText(supplierPhone);
         }
@@ -159,20 +160,27 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
      * Returns the user data as a ContentValue object.
      */
     private ContentValues getValues() {
-        String name = mName.getText().toString().trim();
-        String price = mPrice.getText().toString().trim();
-        String quantity = mQuantity.getText().toString().trim();
-        String supplierName = mSupplierName.getText().toString().trim();
+        String name           = mName.getText().toString().trim();
+        String price          = mPrice.getText().toString().trim();
+        String quantity       = mQuantity.getText().toString().trim();
+        String supplierName   = mSupplierName.getText().toString().trim();
         String supplierNumber = mSupplierNumber.getText().toString().trim();
 
 //      DATA VALIDATION
-        if (TextUtils.isEmpty(name)) return null;
-
-        if (TextUtils.isEmpty(price) && TextUtils.isEmpty(quantity) && TextUtils.isEmpty(supplierName) && TextUtils.isEmpty(supplierNumber))
+        // TODO: Add toasts
+        if (TextUtils.isEmpty(name)){
+            toast(getString(R.string.noName));
             return null;
+        }
 
-        if (TextUtils.isEmpty(price)) price = "0";
-        if (TextUtils.isEmpty(quantity)) quantity = "0";
+        if (TextUtils.isEmpty(price) && TextUtils.isEmpty(quantity) && TextUtils.isEmpty(supplierName) && TextUtils.isEmpty(supplierNumber)){
+            toast(getString(R.string.missingAll));
+            return null;
+        }
+
+
+        if (TextUtils.isEmpty(price)) price = getString(R.string.zero);
+        if (TextUtils.isEmpty(quantity)) quantity = getString(R.string.zero);
 
 //      CONSTRUCTING VALUES
         ContentValues values = new ContentValues();
@@ -185,6 +193,13 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     /**
+     * Helper to make toast for user.
+     */
+    private void toast(String message){
+        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
      * Saves user data to database, depending on activity state.
      */
     private void saveItem() {
@@ -192,36 +207,44 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         if (values == null) return;
         if (mUri == null) {
-            // new item
             addItem(values);
         } else {
-            // editing item
             editItem(values);
         }
     }
 
+    /**
+     * Adds new item to database.
+     */
     private void addItem(ContentValues values) {
         Uri newItemUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
 
         if (newItemUri == null) {
-            Toast.makeText(getApplicationContext(), getString(R.string.itemAddedError), Toast.LENGTH_SHORT).show();
+            toast(getString(R.string.itemAddedError));
         } else {
-            Toast.makeText(getApplicationContext(), getString(R.string.itemAdded), Toast.LENGTH_SHORT).show();
+            toast(getString(R.string.itemAdded));
         }
     }
 
+    /**
+     * Saves edits to item to database.
+     */
     private void editItem(ContentValues values) {
         String selection = InventoryEntry._ID + "=?";
         String[] selectionArgs = new String[]{String.valueOf(ContentUris.parseId(mUri))};
         int id = getContentResolver().update(mUri, values, selection, selectionArgs);
 
         if (id == 0) {
-            Toast.makeText(getApplicationContext(), getString(R.string.itemEditedError), Toast.LENGTH_SHORT).show();
+            toast(getString(R.string.itemEditedError));
         } else {
-            Toast.makeText(getApplicationContext(), getString(R.string.itemEdited), Toast.LENGTH_SHORT).show();
+            toast(getString(R.string.itemEdited));
         }
     }
 
+    /**
+     * Deletes current item from database.
+     * @throws Exception
+     */
     private void deleteItem() throws Exception{
         if(mUri != null){
             int rowsDeleted = getContentResolver().delete(mUri, null, null);
@@ -308,6 +331,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         showUnsavedChangesDialog(discardButtonClickListener);
     }
 
+    /**
+     * Prompts user for verification to discard changes.
+     */
     private void showUnsavedChangesDialog(DialogInterface.OnClickListener discardButtonClickListener) {
 //      NEEDED TO ADD import android.support.v7.app.AlertDialog;
 //      NEEDED TO ADD theme to styles.xml
@@ -326,7 +352,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
+    /**
+     * Prompts user for verification to delete item.
+     */
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_dialog_msg);

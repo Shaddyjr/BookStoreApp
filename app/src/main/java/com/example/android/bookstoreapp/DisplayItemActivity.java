@@ -3,6 +3,8 @@ package com.example.android.bookstoreapp;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,10 +18,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.android.bookstoreapp.data.InventoryContract.InventoryEntry;
@@ -36,7 +38,12 @@ public class DisplayItemActivity extends AppCompatActivity implements LoaderMana
     TextView mItemSupplierName;
     TextView mItemSupplierNumber;
     String mSupplierNumber;
-    private CategoryCursorAdapter mCursorAdapter;
+    Button mPlus_100;
+    Button mPlus_10;
+    Button mPlus_1;
+    Button mMinus_100;
+    Button mMinus_10;
+    Button mMinus_1;
 
     private static final int PERMISSION_REQUEST_PHONE_CALL = 0;
     private static final int LOADER_ID = 0;
@@ -54,7 +61,7 @@ public class DisplayItemActivity extends AppCompatActivity implements LoaderMana
         mItemQuantity = findViewById(R.id.itemQuantity);
         mItemSupplierName = findViewById(R.id.itemSupplierName);
         mItemSupplierNumber = findViewById(R.id.itemSupplierNumber);
-        mCursorAdapter     = new CategoryCursorAdapter(this, null);
+
         getLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
@@ -85,13 +92,16 @@ public class DisplayItemActivity extends AppCompatActivity implements LoaderMana
         }
     }
 
+    /**
+     * Basic error feedback to user regarding item being unreachable.
+     */
     private void errorReadingItem(){
         Toast.makeText(DisplayItemActivity.this, getString(R.string.itemReadError), Toast.LENGTH_SHORT).show();
         finish();
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+    public void onLoadFinished(Loader<Cursor> loader, final Cursor cursor) {
         // in case the cursor has no data
         if (cursor == null || cursor.getCount() < 1) {
             return;
@@ -113,7 +123,7 @@ public class DisplayItemActivity extends AppCompatActivity implements LoaderMana
 
             mItemName.setText(name);
             mItemPrice.setText( String.format(Locale.US,"$%.2f", price));
-            mItemQuantity.setText(Integer.toString(quantity));
+            mItemQuantity.setText( String.format(Locale.US, "%d", quantity));
             mItemSupplierName.setText(supplierName);
             mItemSupplierNumber.setText(mSupplierNumber);
 
@@ -133,19 +143,70 @@ public class DisplayItemActivity extends AppCompatActivity implements LoaderMana
 
                 }
             });
+
+            mPlus_100 = findViewById(R.id.plus_100);
+            mPlus_10 = findViewById(R.id.plus_10);
+            mPlus_1 = findViewById(R.id.plus_1);
+            mMinus_100 = findViewById(R.id.minus_100);
+            mMinus_10 = findViewById(R.id.minus_10);
+            mMinus_1 = findViewById(R.id.minus_1);
+
+            View.OnClickListener onClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String strAmount = (String) view.getTag();
+                    int amount = Integer.parseInt(strAmount);
+                    int quantity = Integer.parseInt(cursor.getString(cursor.getColumnIndex(InventoryEntry.COLUMN_QUANTITY)));
+
+                    if(quantity + amount < 0){
+                        Toast.makeText(DisplayItemActivity.this, getString(R.string.overSubtractError), Toast.LENGTH_SHORT).show();
+                    }else{
+                        int updatedQuantity = quantity + amount;
+                        // UPDATING DB
+                        String cursorId = cursor.getString(cursor.getColumnIndex(InventoryEntry._ID));
+                        Uri uri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, Long.parseLong(cursorId));
+                        ContentValues values = new ContentValues();
+                        values.put(InventoryEntry.COLUMN_QUANTITY,updatedQuantity);
+
+                        String selection = InventoryEntry._ID + "=?";
+                        String[] selectionArgs = new String[] { cursorId };
+
+                        int id = getContentResolver().update(uri, values, selection, selectionArgs);
+
+                        // VISUAL CONFIRMATION
+                        if(id == 0){
+                            // Failed to update
+                            Toast.makeText(DisplayItemActivity.this, getString(R.string.itemEditedError), Toast.LENGTH_SHORT).show();
+                        }
+                        // No need for "else" statement - loader automatically updates with call to notifyDataSetChanged()
+                    }
+                }
+            };
+
+            mPlus_100.setOnClickListener(onClickListener);
+            mPlus_10.setOnClickListener(onClickListener);
+            mPlus_1.setOnClickListener(onClickListener);
+            mMinus_100.setOnClickListener(onClickListener);
+            mMinus_10.setOnClickListener(onClickListener);
+            mMinus_1.setOnClickListener(onClickListener);
         }
-        mCursorAdapter.changeCursor(cursor);
+
     }
 
-    private void makePhoneCall(){
+    /**
+     * Sends phone intent to call to supplier.
+     * @throws SecurityException
+     */
+    private void makePhoneCall() throws SecurityException{
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse(String.format("tel:%s", mSupplierNumber)));
         PackageManager packageManager = getApplicationContext().getPackageManager();
+        // checking for phone app availability
         if (intent.resolveActivity(packageManager) != null) {
-            Toast.makeText(DisplayItemActivity.this, "Calling Supplier", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DisplayItemActivity.this, getString(R.string.callingSupplier), Toast.LENGTH_SHORT).show();
             startActivity(intent);
         } else {
-            Toast.makeText(DisplayItemActivity.this, "No phone app available to make call", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DisplayItemActivity.this, getString(R.string.noPhone), Toast.LENGTH_SHORT).show();
         }
     }
     @Override
@@ -155,12 +216,8 @@ public class DisplayItemActivity extends AppCompatActivity implements LoaderMana
         mItemQuantity.setText("");
         mItemSupplierName.setText("");
         mItemSupplierNumber.setText("");
-        mCursorAdapter.swapCursor(null);
     }
-//    TODO: add menu for delete and edit
-//    TODO: Include Quantity changing logic
-//    TODO: Add Quantity changing buttons
-//    TODO: Add phone intent
+
     // IMPLEMENTING OPTIONS MENU
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -203,6 +260,10 @@ public class DisplayItemActivity extends AppCompatActivity implements LoaderMana
         super.onBackPressed();
     }
 
+    /**
+     * Deletes current item from database.
+     * @throws Exception
+     */
     private void deleteItem() throws Exception{
         if(mUri != null){
             int rowsDeleted = getContentResolver().delete(mUri, null, null);
@@ -212,6 +273,9 @@ public class DisplayItemActivity extends AppCompatActivity implements LoaderMana
         finish();
     }
 
+    /**
+     * Shows confirmation to delete current item from database.
+     */
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_dialog_msg);
@@ -251,8 +315,7 @@ public class DisplayItemActivity extends AppCompatActivity implements LoaderMana
                     makePhoneCall();
                 } else {
                     // permission denied
-                    Toast.makeText(DisplayItemActivity.this, "Cannot make call from app without user permission", Toast.LENGTH_LONG).show();               }
-                return;
+                    Toast.makeText(DisplayItemActivity.this, getString(R.string.phonePermission), Toast.LENGTH_LONG).show();               }
             }
         }
     }

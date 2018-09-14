@@ -3,6 +3,9 @@
     <string name="app_name">BookStoreApp</string>
     <string name="edit">Edit</string>
 
+    <!--DEFAULT VALUES-->
+    <string name="zero">0</string>
+
     <!--READ-->
     <string name="itemReadError">Could not find item</string>
 
@@ -38,6 +41,15 @@
     <string name="emptyInventory">No Inventory!</string>
     <string name="emptyInventoryInstructions">Add a new Item using the button in the lower right</string>
 
+    <!--INCREMENTS-->
+    <string name="plus_100">+100</string>
+    <string name="plus_10">+10</string>
+    <string name="plus_1">+1</string>
+    <string name="minus_1">-1</string>
+    <string name="minus_10">-10</string>
+    <string name="minus_100">-100</string>
+    <string name="overSubtractError">Not enough items to remove that amount</string>
+
     <!--MENU-->
     <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
     <string name="discard">Discard Changes</string>
@@ -45,4 +57,13 @@
     <string name="delete_dialog_msg">Delete item?</string>
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
+
+    <!--PHONE-->
+    <string name="callingSupplier">Calling Supplier</string>
+    <string name="noPhone">No phone app available to make call</string>
+    <string name="phonePermission">Cannot make call from app without user permission</string>
+
+    <!--VALIDATION-->
+    <string name="noName">Name field required</string>
+    <string name="missingAll">Cannot create item with no information</string>
 </resources>
