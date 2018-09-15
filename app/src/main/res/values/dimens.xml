@@ -2,4 +2,36 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="activity_margin">16dp</dimen>
+
+    <!--DEFAULTS-->
+    <dimen name="zero">0dp</dimen>
+    <dimen name="smallPadding">4dp</dimen>
+    <dimen name="base_padding">8dp</dimen>
+    <dimen name="bigPadding">16dp</dimen>
+    <dimen name="base_margin">24dp</dimen>
+    <dimen name="default_weight">1</dimen>
+
+    <!--CATEGORY ITEMS ACTIVITY-->
+    <dimen name="emptyDB_imageWidth">200dp</dimen>
+    <dimen name="emptyDB_imageHeight">200dp</dimen>
+    <dimen name="emptyDB_instructions_padding">18dp</dimen>
+
+    <dimen name="emptyDB_catchphrase_size">32sp</dimen>
+    <dimen name="emptyDB_instructions_size">20sp</dimen>
+
+    <!--EDIT ACTIVITY-->
+    <dimen name="editor_container_padding">26dp</dimen>
+    <dimen name="editor_width">120dp</dimen>
+
+    <!--DISPLAY ACTIVITY-->
+    <dimen name="display_container_padding">18dp</dimen>
+    <dimen name="display_item_margin">32dp</dimen>
+    <dimen name="display_item_supplierNumber_margin">16dp</dimen>
+
+    <dimen name="display_item_name_size">42sp</dimen>
+    <dimen name="display_item_price_size">32sp</dimen>
+    <dimen name="display_item_quantity_size">22sp</dimen>
+    <dimen name="display_item_supplierName_size">20sp</dimen>
+    <dimen name="display_item_supplierNumber_size">16sp</dimen>
+
 </resources>

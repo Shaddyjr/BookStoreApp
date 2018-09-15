@@ -32,7 +32,6 @@
     <string name="supplierName">Supplier: %1$s</string>
     <string name="supplierNumber">Supplier Number: %1$s</string>
     <string name="quantity">Quantity: %1$d</string>
-
     <string name="sale">Sale</string>
     <string name="save">Save</string>
     <string name="order">Order</string>
@@ -66,4 +65,17 @@
     <!--VALIDATION-->
     <string name="noName">Name field required</string>
     <string name="missingAll">Cannot create item with no information</string>
+
+    <!--EDITOR ACTIVITY-->
+    <string name="label_name">Name:</string>
+    <string name="hint_name">Name</string>
+    <string name="label_price">Price:</string>
+    <string name="hint_price">Price</string>
+    <string name="label_quantity">Quantity:</string>
+    <string name="hint_quantity">Quantity</string>
+    <string name="label_supplierName">Supplier Name:</string>
+    <string name="hint_supplierName">Supplier Name</string>
+    <string name="label_supplierNumber">Supplier Number:</string>
+    <string name="hint_supplierNumber">Supplier Number</string>
+
 </resources>

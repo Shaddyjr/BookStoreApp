@@ -167,7 +167,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String supplierNumber = mSupplierNumber.getText().toString().trim();
 
 //      DATA VALIDATION
-        // TODO: Add toasts
         if (TextUtils.isEmpty(name)){
             toast(getString(R.string.noName));
             return null;
@@ -356,10 +355,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
      * Prompts user for verification to delete item.
      */
     private void showDeleteConfirmationDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.delete_dialog_msg);
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditorActivity.this);
         builder.setCancelable(false);
-
+        builder.setMessage(R.string.delete_dialog_msg);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked the "Delete" button
@@ -380,7 +378,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 }
             }
         });
-        final AlertDialog dialog = builder.create();
-        dialog.show();
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

@@ -11,6 +11,229 @@
         <item name="alertDialogTheme">@style/AlertDialogTheme</item>
     </style>
 
+    <!--ALERT DIALOG-->
     <style name="AlertDialogTheme" parent="Theme.AppCompat.Dialog">
     </style>
+
+    <!--BASES-->
+    <style name="base_match">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="base_wrap">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="base_match_width">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="base_match_height">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="base_wrap.vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+    <!--BASES END-->
+
+    <!--MAIN ACTIVITY-->
+    <!--FLOATING ACTION BUTTON-->
+    <style name="base_wrap.fab">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+    </style>
+    <!--MAIN ACTIVITY END-->
+
+    <!--CATEGORY ITEMS ACTIVITY-->
+    <style name="base_wrap.empty_layout_container">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="empty_layout_image">
+        <item name="android:layout_width">@dimen/emptyDB_imageWidth</item>
+        <item name="android:layout_height">@dimen/emptyDB_imageHeight</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:src">@drawable/empty_box</item>
+    </style>
+
+    <style name="base_wrap.empty_layout_catchphrase">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">@dimen/emptyDB_catchphrase_size</item>
+        <item name="android:text">@string/emptyInventory</item>
+    </style>
+    <style name="base_wrap.empty_layout_instructions">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">@dimen/emptyDB_instructions_size</item>
+        <item name="android:text">@string/emptyInventoryInstructions</item>
+        <item name="android:paddingTop">@dimen/emptyDB_instructions_padding</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+    <!--CATEGORY ITEMS ACTIVITY END-->
+
+    <!--LIST ITEM-->
+    <style name="base_match_width.list_item_container">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/item_box</item>
+        <item name="android:focusable">false</item>
+        <item name="android:descendantFocusability">blocksDescendants</item>
+    </style>
+
+    <style name="list_item_name">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">@dimen/base_padding</item>
+    </style>
+
+    <style name="base_match_height.list_item_info_container">
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/smallPadding</item>
+    </style>
+
+    <style name="list_item_info">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_height">@dimen/zero</item>
+        <item name="android:layout_weight">@dimen/default_weight</item>
+    </style>
+
+    <style name="base_wrap.list_item_sale_button">
+        <item name="android:layout_marginLeft">@dimen/base_padding</item>
+        <item name="android:layout_marginRight">@dimen/base_margin</item>
+        <item name="android:text">@string/sale</item>
+    </style>
+    <!--LIST ITEM END-->
+
+    <!--EDITOR ACTIVITY-->
+    <style name="base_match.editor_container">
+        <item name="android:padding">@dimen/editor_container_padding</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="editor_label">
+        <item name="android:layout_width">@dimen/editor_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="editor_input">
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_width">@dimen/zero</item>
+        <item name="android:layout_weight">@dimen/default_weight</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="editor_label.name">
+        <item name="android:text">@string/label_name</item>
+    </style>
+    <style name="editor_input.name">
+        <item name="android:hint">@string/hint_name</item>
+        <item name="android:inputType">text</item>
+    </style>
+
+    <style name="editor_label.price">
+        <item name="android:text">@string/label_price</item>
+    </style>
+    <style name="editor_input.price">
+        <item name="android:hint">@string/hint_price</item>
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+
+    <style name="editor_label.quantity">
+        <item name="android:text">@string/label_quantity</item>
+    </style>
+    <style name="editor_input.quantity">
+        <item name="android:hint">@string/hint_quantity</item>
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="editor_label.supplierName">
+        <item name="android:text">@string/label_supplierName</item>
+    </style>
+    <style name="editor_input.supplierName">
+        <item name="android:hint">@string/hint_supplierName</item>
+        <item name="android:inputType">text</item>
+    </style>
+
+    <style name="editor_label.supplierNumber">
+        <item name="android:text">@string/hint_supplierNumber</item>
+    </style>
+    <style name="editor_input.supplierNumber">
+        <item name="android:hint">@string/hint_supplierNumber</item>
+        <item name="android:inputType">phone</item>
+    </style>
+    <!--EDITOR ACTIVITY END-->
+
+    <!--DISPLAY ACTIVITY-->
+    <style name="base_match.display_container">
+        <item name="android:padding">@dimen/display_container_padding</item>
+    </style>
+
+    <style name="base_wrap.display_item">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">@dimen/display_item_margin</item>
+    </style>
+
+    <style name="base_wrap.display_item.name">
+        <item name="android:textSize">@dimen/display_item_name_size</item>
+    </style>
+    <style name="base_wrap.display_item.price">
+        <item name="android:textSize">@dimen/display_item_price_size</item>
+    </style>
+    <style name="base_wrap.display_item.supplierName">
+        <item name="android:textSize">@dimen/display_item_supplierName_size</item>
+    </style>
+    <style name="base_wrap.display_item_supplierNumber">
+        <item name="android:textSize">@dimen/display_item_supplierNumber_size</item>
+        <item name="android:layout_marginTop">@dimen/display_item_supplierNumber_margin</item>
+        <item name="android:textColor">@color/primaryLightAlt</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="base_match_width.display_quantity_container">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginTop">@dimen/display_item_margin</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="display_item_quantity">
+        <item name="android:layout_width">@dimen/zero</item>
+        <item name="android:layout_weight">@dimen/default_weight</item>
+        <item name="android:textSize">@dimen/display_item_quantity_size</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="base_wrap.display_button_plus_100">
+        <item name="android:text">@string/plus_100</item>
+    </style>
+    <style name="base_wrap.display_button_plus_10">
+        <item name="android:text">@string/plus_10</item>
+    </style>
+    <style name="base_wrap.display_button_plus_1">
+        <item name="android:text">@string/plus_1</item>
+    </style>
+    <style name="base_wrap.display_button_minus_100">
+        <item name="android:text">@string/minus_100</item>
+    </style>
+    <style name="base_wrap.display_button_minus_10">
+        <item name="android:text">@string/minus_10</item>
+    </style>
+    <style name="base_wrap.display_button_minus_1">
+        <item name="android:text">@string/minus_1</item>
+    </style>
+    <!--DISPLAY ACTIVITY END-->
+
 </resources>

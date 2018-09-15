@@ -1,22 +1,13 @@
 package com.example.android.bookstoreapp;
 
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.android.bookstoreapp.data.InventoryContract.InventoryEntry;
-import com.example.android.bookstoreapp.data.InventoryDbHelper;
 public class StoreActivity extends AppCompatActivity {
     CategoryFragmentAdapter mAdapter;
 

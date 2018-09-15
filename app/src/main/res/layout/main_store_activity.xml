@@ -1,37 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/base_match"
     tools:context=".StoreActivity">
 
     <!--Needed to add "api" to build.gradle-->
     <android.support.design.widget.TabLayout
         android:id="@+id/sliding_tabs"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        app:tabMode="fixed"
-        />
+        style="@style/base_match_width"
+        app:tabMode="fixed" />
 
     <!--Needed to place ViewPager below tabs in RelativeLayout-->
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/sliding_tabs"
-        />
+        style="@style/base_wrap"
+        android:layout_below="@+id/sliding_tabs" />
 
+    <!--Needed to add VectorDrawables support to build.gradle-->
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/colorPrimary"
-        app:srcCompat="@drawable/baseline_add_white_24"/>
-    <!--Needed to add VectorDrawables support to build.gradle-->
+        style="@style/base_wrap.fab"
+        app:srcCompat="@drawable/baseline_add_white_24" />
 </RelativeLayout>

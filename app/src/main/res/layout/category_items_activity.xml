@@ -1,52 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".StoreActivity"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    style="@style/base_match"
+    tools:context=".StoreActivity">
     <!--for fragment have to set tools:context-->
 
     <ListView
         android:id="@+id/category_items_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        style="@style/base_match" />
     <!--needed to add blocksDescendant-->
 
     <!--EMPTY DATABASE LAYOUT-->
     <RelativeLayout
         android:id="@+id/emptyDB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        >
+        style="@style/base_wrap.empty_layout_container">
 
         <ImageView
             android:id="@+id/emptyBox"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/empty_box" />
+            style="@style/empty_layout_image" />
 
         <TextView
             android:id="@+id/noItems"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/emptyBox"
-            android:layout_centerHorizontal="true"
-            android:text="There are no items"
-            android:textSize="32sp" />
+            style="@style/base_wrap.empty_layout_catchphrase"
+            android:layout_below="@+id/emptyBox" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/noItems"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="18dp"
-            android:text="Add some by using the button at the bottom"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            style="@style/base_wrap.empty_layout_instructions"
+            android:layout_below="@+id/noItems" />
 
     </RelativeLayout>
 </RelativeLayout>

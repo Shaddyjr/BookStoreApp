@@ -1,134 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="18dp"
-    >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_match.display_container">
 
     <TextView
         android:id="@+id/itemName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Some Name"
-        android:textSize="42sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        />
+        style="@style/base_wrap.display_item.name" />
+
     <TextView
         android:id="@+id/itemPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="$500.00"
-        android:textSize="32sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:layout_below="@+id/itemName"
-        />
+        style="@style/base_wrap.display_item.price"
+        android:layout_below="@+id/itemName" />
 
     <LinearLayout
         android:id="@+id/itemQuantityContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/itemPrice"
-        android:orientation="horizontal"
-        android:layout_marginTop="32dp"
-        android:gravity="center_vertical"
-        >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+        style="@style/base_match_width.display_quantity_container"
+        android:layout_below="@+id/itemPrice">
+
+        <LinearLayout style="@style/base_wrap.vertical">
+
             <Button
                 android:id="@+id/plus_100"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/plus_100"
-                android:tag="100"
-                />
+                style="@style/base_wrap.display_button_plus_100" />
+
             <Button
                 android:id="@+id/plus_10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/plus_10"
-                android:tag="10"
-                />
+                style="@style/base_wrap.display_button_plus_10" />
+
             <Button
                 android:id="@+id/plus_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/plus_1"
-                android:tag="1"
-                />
+                style="@style/base_wrap.display_button_plus_1" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/itemQuantity"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            tools:text="Quantity: 4"
-            android:textSize="22sp"
-            android:textAlignment="center"
-            android:layout_centerHorizontal="true"
-            />
+            style="@style/display_item_quantity" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        <LinearLayout style="@style/base_wrap.vertical">
 
-        <Button
-            android:id="@+id/minus_100"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/minus_100"
-            android:tag="-100"
-            />
-        <Button
-            android:id="@+id/minus_10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/minus_10"
-            android:tag="-10"
-            />
-        <Button
-            android:id="@+id/minus_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/minus_1"
-            android:tag="-1"
-            />
-    </LinearLayout>
+            <Button
+                android:id="@+id/minus_100"
+                style="@style/base_wrap.display_button_minus_100" />
+
+            <Button
+                android:id="@+id/minus_10"
+                style="@style/base_wrap.display_button_minus_10" />
+
+            <Button
+                android:id="@+id/minus_1"
+                style="@style/base_wrap.display_button_minus_1" />
+        </LinearLayout>
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/itemSupplierName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Supplier: Bob Bobbington"
-        android:textSize="20sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:layout_below="@+id/itemQuantityContainer"
-        />
-
-    <!--TODO: add underline or other signal for clicking-->
+        style="@style/base_wrap.display_item.supplierName"
+        android:layout_below="@+id/itemQuantityContainer" />
+    
     <TextView
         android:id="@+id/itemSupplierNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Order now: (123) 123-1234"
-        android:textStyle="italic"
-        android:textColor="@color/primaryLightAlt"
-        android:textSize="16sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:layout_below="@+id/itemSupplierName"
-        />
+        style="@style/base_wrap.display_item_supplierNumber"
+        android:layout_below="@+id/itemSupplierName" />
 
 </RelativeLayout>

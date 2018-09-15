@@ -1,7 +1,6 @@
 package com.example.android.bookstoreapp;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -11,12 +10,14 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -126,6 +127,8 @@ public class DisplayItemActivity extends AppCompatActivity implements LoaderMana
             mItemQuantity.setText( String.format(Locale.US, "%d", quantity));
             mItemSupplierName.setText(supplierName);
             mItemSupplierNumber.setText(mSupplierNumber);
+            // adding underline to signal to user content is clickable
+            mItemSupplierNumber.setPaintFlags(mItemSupplierNumber.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
 //          NEEDED TO ADD to manifest <uses-permission android:name="android.permission.CALL_PHONE" />
             mItemSupplierNumber.setOnClickListener(new View.OnClickListener() {
@@ -150,7 +153,7 @@ public class DisplayItemActivity extends AppCompatActivity implements LoaderMana
             mMinus_100 = findViewById(R.id.minus_100);
             mMinus_10 = findViewById(R.id.minus_10);
             mMinus_1 = findViewById(R.id.minus_1);
-
+            setTags();
             View.OnClickListener onClickListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -277,7 +280,10 @@ public class DisplayItemActivity extends AppCompatActivity implements LoaderMana
      * Shows confirmation to delete current item from database.
      */
     private void showDeleteConfirmationDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//      NEEDED TO ADD import android.support.v7.app.AlertDialog;
+//      NEEDED TO ADD theme to styles.xml
+        AlertDialog.Builder builder = new AlertDialog.Builder(DisplayItemActivity.this);
+        builder.setCancelable(false);
         builder.setMessage(R.string.delete_dialog_msg);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -318,5 +324,14 @@ public class DisplayItemActivity extends AppCompatActivity implements LoaderMana
                     Toast.makeText(DisplayItemActivity.this, getString(R.string.phonePermission), Toast.LENGTH_LONG).show();               }
             }
         }
+    }
+
+    private void setTags(){
+        mPlus_100.setTag("100");
+        mPlus_10.setTag("10");
+        mPlus_1.setTag("1");
+        mMinus_100.setTag("-100");
+        mMinus_10.setTag("-10");
+        mMinus_1.setTag("-1");
     }
 }
